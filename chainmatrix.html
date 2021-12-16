@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSpot</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" integrity="sha512-m3pAvNriL711NMlhkZHK6K4Tu2/RjtrzyjxZU8mlAbxxoDoURy27KajN1LGTLeEEPvaN12mKAgSCrYEwF9y0jA==" crossorigin="anonymous" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/index.html" class="nav-brand text-dark">
+                    AlgoSpot
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        <a href="./AlgoSpot.html" class="nav-link">Home</a>
+                      
+                    </ul>
+                </div>
+           </nav>
+       </header>
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Post Content -->
+                <section class="container">
+                    <article id="post">
+                        <!-- article heading -->
+                        <div class="headings text-center">
+                            <div class="title">
+                                <h2 class="text-title text-dark display-1">Chain Matrix Multiplication</h2>
+                            </div>
+
+                            <div class="meta">
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-user text-primary"></i> Vidhi Pareek
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-clock text-primary"></i>  Nov 24,2021
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <!-- content -->
+                        <div class="content text-dark display-2 secondary-title mt-3 cmath">
+                          <ul>
+                            <li>
+                              <h1>Problem</h1>
+                              This problem deals with deciding a sequence of matrices so that the cost of matrix multiplication is least.
+                              In other words, the problem is not actually to perform the multiplications but only to decide the sequence of matrix multiplications involved.
+                            </li>
+                            <li>
+                              <h1>How does the sequence of matrices matter?</h1>
+                              <p>
+Let `X` be a `m*a` matrix and `Y` be a `a*b` matrix . Then the cost to perform `XY` will be `m*a*b`.
+                              <br />Matrix multiplication is associative which means `((AB)C)D = ((A(BC))D) = (AB)(CD) = A((BC)D) = A(B(CD))`.
+                              Now, let us look at how different sequence affects the cost of matrix multiplication.
+<br />Example :  if A is a 10 × 30 matrix, B is a 30 × 5 matrix, and C is a 5 × 60 matrix,
+ then computing (AB)C needs (10×30×5) + (10×5×60) = 1500 + 3000 = 4500 operations while computing A(BC) needs (30×5×60) + (10×30×60) = 9000 + 18000 = 27000 operations.
+Clearly, the first method is more efficient.
+</p>
+                            </li>
+                            <li>
+                              <h1>Solution</h1>
+                              With a clever observation , we can see that these sequences form a binary tree
+                              Consider multiplication (ABCD)
+                              <ul>
+                                <li>
+                                  <b>Case ((AB)C)D</b> :<p>
+                                    Here A and B are multiplied to give a resultant matrix say X which is then multiplied with C to give an intermediate matrix say Y . This Y will finally be multiplied with D to give final result
+                                  </p>
+                                  <p>
+                                    Consider A and B to be leaf nodes connected to parent X . Then X and leaf node C are attached to parent Y . At this stage, Y and D are attached to parent node final result.
+Similarly binary trees can be formed in (A(BC)D) and (A(BC))D.
+
+                                  </p>
+                                  <li>
+
+                                    Similarly binary trees can be formed in (A(BC)D) and (A(BC))D.
+                                  </li>
+                                  <br />
+                                  <img height="300" width="500" src="./assets/cm1.png" />
+                                  <br /><img height="300" width="500" src="./assets/cm2.png" />
+                                </li>
+                                <li>
+                                  Observe that, for a binary tree to be optimal, its subtrees must be optimal!
+                                  <br />In order to give a correct output , we need to look at all possible binary tress i.e we need to look at all possible sequences.
+                                  <p>
+                                    Separate a sequence of matrices into two subsequences . Then, find the minimum number of simple multiplication operations performed to find the result of both subsequences. Add these costs as well as the cost of multiplying the two result matrices . Do this for every pair of subsequences and output the minimum result.
+
+                                  </p>
+                                </li>
+                                <li>
+                                  Using the above approach,
+If `C(i,j)` is the minimum cost to multiply matrices in subsequence from `i` to `j`.
+Then `C(i,j) = min(C(i,k)+C(k+1,j)+m_(i-1)*m_k*m_j)` for all `k >=i and k < j`
+
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+<pre><code class="language-pascal">
+for i=1 to n: C(i,i)=0
+
+for s=1 to n-1:
+  for i=1 to n-s:
+    j=i+s
+    C(i,j) = min(C(i,k)+C(k+1,j)+m<sub>(i-1)</sub>*m<sub>k</sub>*m<sub>j</sub>)
+return C(1,n)
+</code></pre>
+                            </li>
+                            <li>
+                              Time Complexity : `O(n^2)`
+                            </li>
+                          </ul>
+                        </div>
+                    </article>
+
+                    <!-- post footer -->
+                    <div class="post-footer mb-3">
+                        <div class="post-tags d-flex flex-wrap justify-content-center">
+                            <a href="#" class="nav-link btn bg-light">Chain Matrix</a>
+                            <a href="#" class="nav-link btn bg-light">DP</a>
+                        </div>
+
+
+
+                        <!-- post related -->
+                        <div class="post-realted py-2">
+                            <div class="row justify-content-center">
+                                <div class="prev">
+                                    <div class="py-2">
+                                        <a href="./editdistance.html" class="display-2 text-dark">
+                                            <i class="fas fa-chevron-left"></i>
+                                            Previous Post
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="./editdistance.html">
+                                                <img src="./assets/editdistance.png" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./editdistance.html" class="text-title display-1 text-dark">
+                                                  Edit Distance
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="next text-right">
+                                    <div class="py-2">
+                                        <a href="./knapsack.html" class="display-2 text-dark">
+                                            Next Post
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./knapsack.html" class="text-title display-1 text-dark">
+                                                    Knapsack
+                                                </a>
+                                            </div>
+                                            <a href="./knapsack.html">
+                                                <img src="./assets/knapsack.png" class="object-fit" alt="">
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+
+    <!-- .footer -->
+
+
+    <!-- masonry libray for horizontal grid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <!-- custom javascript main.js file -->
+    <script src="main.js"></script>
+</body>
+</html>

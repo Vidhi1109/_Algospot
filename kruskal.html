@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSpot</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" integrity="sha512-m3pAvNriL711NMlhkZHK6K4Tu2/RjtrzyjxZU8mlAbxxoDoURy27KajN1LGTLeEEPvaN12mKAgSCrYEwF9y0jA==" crossorigin="anonymous" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/index.html" class="nav-brand text-dark">
+                    AlgoSpot
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        <a href="./AlgoSpot.html" class="nav-link">Home</a>
+
+                    </ul>
+                </div>
+           </nav>
+       </header>
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Post Content -->
+                <section class="container">
+                    <article id="post">
+                        <!-- article heading -->
+                        <div class="headings text-center">
+                            <div class="title">
+                                <h2 class="text-title text-dark display-1">Kruskal Algorithm</h2>
+                            </div>
+
+                            <div class="meta">
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-user text-primary"></i> Vidhi Pareek
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-clock text-primary"></i>  Nov 24,2021
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <!-- content -->
+                        <div class="content text-dark display-2 secondary-title mt-3 cmath">
+                          <ul>
+                            <li>
+                            <h1>Problem</h1>
+                            Given a weighted, undirected graph. Find the minimum spanning tree of this graph.
+                          </li>
+                          <li>
+                            <h1>What is a minimum spanning tree</h1>
+                            <ul>
+                              <li>
+                                A spanning tree of a graph is a subtree of this graph such that it contains all the vertcies of the main graph and all of them are connected.
+                              </li>
+                              <li>
+                                Weight of a spanning tree is the summation of edge weights that make up that spanning tree.
+                              </li>
+                              <li>
+                                Minimum spanning tree is a spanning tree whose weight is minimum `i.e.` summation of weight of its edges is minimum.
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <h1>Approach</h1>
+                            <b>Repeatedly add the next lighest edge that doesn't produce a cycle.</b>
+                            <ul>
+                              <li>
+                                Sort all the edges in increasing order of weights.
+                              </li>
+                              <li>
+                                Add edges to MST starting from least weighted. Ensure that adding an edge doesn't form a loop.
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <h1>The Cut Property</h1>
+                            <ul>
+                              <li>
+Let `G=(V,E)` be a graph, and let `H  \subset G` be a subgraph of `G` which is contained in a
+minimal spanning tree. Suppose `H` cuts `G` into a disjoint union `S ∪ T`.Then if `e \in  E` is an edge from `S` to `T` `(in {G})`
+of minimal weight,
+then `H ∪ e` is contained in a minimal spanning tree. Note: `e \notin H`.
+                              </li>
+                              <li>
+                                Proof: Assume that `H` is contained in minimal spanning tree `T`.
+  Then `T` contains all the vertices of `G`, and it is connected, so there is an edge `e' \in T` from `S` to `T`. This edge does not belong to `H` by hypothesis
+                              </li>
+                              <li>
+Claim: `T - {e'}∪{e}` is still a minimum spanning tree, which clearly contains `H ∪ {e}`.
+<br />Now ,note that `T∪{e}` necessarily has a cycle.
+<br />This cycle has an edge `e` going from `S` to `T`, so it must contain another edge `e'` going from `T` to  `S`.
+
+                              </li>
+                              <li>
+Now `T'=T - {e'}∪{e}` is connected (since removing on edge in a cycle does not change connectedness), and it is thus a tree because
+<div class="cmath" align="center">
+  `|T'| = |T - {e'}∪{e}| = |T| = |V|-1.`
+
+</div>
+                              </li>
+                              <li>
+The claim is that it is a minimal spanning tree. But the weight of `T'` can be at most the weight of `T`, since `e'` has at least the same weight as `e`. It follows that `T` is a minimum spanning tree as well.
+                              </li>
+                            </ul>
+
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+Disjoint Sets : Disjoint Sets is a data structure which partitions a set of items. A partition is a set of sets such that each item is in one and only one set. It has operations:
+<ol>
+  <li>
+    makeset(x) - makes a set from a single item
+  </li>
+  <li>
+    find(x) - finds the set that x belongs to
+  </li>
+  <li>
+    union(x, y) - makes the union of the sets containing x and y
+  </li>
+</ol>
+                          </li>
+                          <li>
+                            Implementation using trees :
+                            <ul>
+                        <li>
+The operation makeset is just to make a single node tree. The cost is Θ(1).</li>
+
+<li>
+The operation union links the root of one tree to the root of the other tree. The cost is Θ(1).</li>
+
+<li>The operation find requires traversing up the tree and costs Θ(h), where h is the height of the tree. The height could be on the order of the set size. To control the cost, the union should make the smaller tree in the union operation the sub tree of the larger tree. This is union by size (by set size) or union by rank (by tree height). Naturally this requires storing the tree size or height in the root. Using union by size or rank the height of tree is logarithmic with the number of unions (in other words the tree/set size).</li>
+
+<li>
+The cost for n-1 unions and m finds is `O(n + m lg n)`</li>
+<li>
+Much better can be done by path compression : Path compression makes every node encounter during a find linked with the root directly. Then a sequence of n-1 unions and m finds is only slightly more than linear in n and m.
+</li>
+</ul>
+                          </li>
+                          <li>
+<pre><code class="language-pascal">
+Algorithm Kruskal(G)
+    sort E by the edge weights // Note this is a Priority Queue
+    make disjoint sets of vertices, d(v)
+    while ecounter < |V|-1 and E is not empty do
+          (u, v) ← remove minimum from E
+          if find(u) ≠ find(v) then
+              T ← union(u, v)
+              ecounter++
+return T
+</code></pre>
+                          </li>
+                          </ul>
+                        </div>
+                    </article>
+
+                    <!-- post footer -->
+                    <div class="post-footer mb-3">
+                        <div class="post-tags d-flex flex-wrap justify-content-center">
+                            <a href="#" class="nav-link btn bg-light">Greedy</a>
+                            <a href="#" class="nav-link btn bg-light">Graphs</a>
+                            <a href="#" class="nav-link btn bg-light">Kruskal</a>
+                        </div>
+
+
+
+                        <!-- post related -->
+                        <div class="post-realted py-2">
+                            <div class="row justify-content-center">
+                                <div class="prev">
+                                    <div class="py-2">
+                                        <a href="./activityselection.html" class="display-2 text-dark">
+                                            <i class="fas fa-chevron-left"></i>
+                                            Previous Post
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="./activityselection.html">
+                                                <img src="./assets/activity.png" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./activityselection.html" class="text-title display-1 text-dark">
+                                                    Activity Selection
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+    <!-- .footer -->
+
+
+    <!-- masonry libray for horizontal grid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <!-- custom javascript main.js file -->
+    <script src="main.js"></script>
+</body>
+</html>

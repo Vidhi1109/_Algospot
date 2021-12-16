@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSpot</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" integrity="sha512-m3pAvNriL711NMlhkZHK6K4Tu2/RjtrzyjxZU8mlAbxxoDoURy27KajN1LGTLeEEPvaN12mKAgSCrYEwF9y0jA==" crossorigin="anonymous" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/index.html" class="nav-brand text-dark">
+                    AlgoSpot
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        <a href="./AlgoSpot.html" class="nav-link">Home</a>
+
+                    </ul>
+                </div>
+           </nav>
+       </header>
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Post Content -->
+                <section class="container">
+                    <article id="post">
+                        <!-- article heading -->
+                        <div class="headings text-center">
+                            <div class="title">
+                                <h2 class="text-title text-dark display-1">Merge Sort</h2>
+                            </div>
+
+                            <div class="meta">
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-user text-primary"></i> Vidhi Pareek
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-clock text-primary"></i>  Nov 21,2021
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- thumbnail  -->
+
+                        <!-- content -->
+                        <div class="content text-dark display-2 secondary-title mt-3 cmath">
+                          <p>
+                            <ul>
+                              <li>
+                                <b>Merge sort</b> is one of the most efficient sorting algorithms. It works on the principle of <b>Divide and Conquer</b>.
+                              </li>
+                              <li>
+                                It works on the following principle:
+                                <ol>
+                                  <li>
+                                    Divide the input array into two halves.
+                                  </li>
+                                  <li>
+                                    Calls itself for both the halves. In other words, recursively sort both the halves.
+                                  </li>
+                                  <li>
+                                    Merge the two sorted halves.
+                                  </li>
+                                </ol>
+                                <p>
+                                  What actually happens?
+                                  <ul>
+                                    <li>
+                                      We take variables `i` and `r`to store the starting and ending index of the array.
+                                    </li>
+                                    <li>
+                                      Then we find the middle index of the array using the formula `(i + r)/2`. Let this middle index be stored in variable `q` .Break the array into two subarrays, from `i` to `q` and from `q + 1` to `r` index
+                                    </li>
+                                    <li>
+                                      Divide these arrays recursively just like we did in step 1 and 2.Finally single-element sub-arrays will be obtained.
+                                    </li>
+                                    <li>
+                                      Merge these sorted sub-arrays recursively to obtain a final array.
+                                    </li>
+                                  </ul>
+                                </p>
+                              </li>
+                              <li>
+                                Let us look at the logic with the help of an example:
+                                <br />
+                                <br /><img height="400" width="650" src="./assets/merge.png" />
+                              </li>
+                            </ul>
+                          </p>
+                          <p>
+                            <h1>Time-Complexity Analysis</h1>
+                            <ul>
+                              <li>
+                                Whenever we divide a number into half in every step, it can be represented using a logarithmic function, which is `log n` and the number of steps can be represented by `log n + 1`(at most).
+                              </li>
+                                <li>
+                                Finding the middle element of array will be a single step operation . So, O(1).
+                              </li>
+                              <li>
+                                To merge the subarrays, made by dividing the original array of n elements, a running time of O(n) will be required.
+                              </li>
+                              <li>
+                                So, the total time for merge sort will become `n(logn + 1)`. Hence, the time complexity becomes `O(nlogn)`.
+
+                              </li>
+                              <li>
+                                Merge sort will always have a time complexity of `O(nlogn)` i.e its worst case time complexity, best case time complexity and average case time complexity is same.
+                              </li>
+                              <li>
+<pre><code class="language-pascal">
+mergeSort(arr, size)
+
+If  size > 1
+
+Step 1: Find the size of the leftSubArray and rightSubArray so that we can divide the array into two-part
+leftSize = size / 2;
+rightSize = size - leftSize;
+Step 2: Call the mergesort for the leftSubArray
+mergeSort(leftSubArray, leftSize);
+Step 3: Call the mergesort for the rightSubArray
+mergeSort(rightSubArray, rightSize);
+Step 4: Call the merge function to merge these two halves
+mergeTwoSortedArray(leftSubArray, rightSubArray, arr,leftSize, rightSize)
+</code></pre>
+                              </li>
+                            </ul>
+
+
+                          </p>
+                        </div>
+                    </article>
+
+                    <!-- post footer -->
+                    <div class="post-footer mb-3">
+                        <div class="post-tags d-flex flex-wrap justify-content-center">
+                            <a href="#" class="nav-link btn bg-light">Mergesort</a>
+                            <a href="#" class="nav-link btn bg-light">Divide and Conquer</a>
+                        </div>
+
+
+
+                        <!-- post related -->
+                        <div class="post-realted py-2">
+                            <div class="row justify-content-center">
+                                <div class="prev">
+                                    <div class="py-2">
+                                        <a href="./Divideandconquer.html" class="display-2 text-dark">
+                                            <i class="fas fa-chevron-left"></i>
+                                            Previous Post
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="./Divideandconquer.html">
+                                                <img src="./assets/dnq.png" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Fashion</a>
+                                                </div>
+                                                <a href="./Divideandconquer.html" class="text-title display-1 text-dark">
+                                                    Divide and Conquer
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="next text-right">
+                                    <div class="py-2">
+                                        <a href="./medin.html" class="display-2 text-dark">
+                                            Next Post
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./medin.html" class="text-title display-1 text-dark">
+                                                    Median Finding Algorithm
+                                                </a>
+                                            </div>
+                                            <a href="./medin.html">
+                                                <img src="./assets/median.png" class="object-fit" alt="">
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+
+    <!-- .footer -->
+
+
+    <!-- masonry libray for horizontal grid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <!-- custom javascript main.js file -->
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSpot</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" integrity="sha512-m3pAvNriL711NMlhkZHK6K4Tu2/RjtrzyjxZU8mlAbxxoDoURy27KajN1LGTLeEEPvaN12mKAgSCrYEwF9y0jA==" crossorigin="anonymous" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/index.html" class="nav-brand text-dark">
+                    AlgoSpot
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        <a href="./AlgoSpot.html" class="nav-link">Home</a>
+                        
+                    </ul>
+                </div>
+           </nav>
+       </header>
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Post Content -->
+                <section class="container">
+                    <article id="post">
+                        <!-- article heading -->
+                        <div class="headings text-center">
+                            <div class="title">
+                                <h2 class="text-title text-dark display-1">Activity Selection</h2>
+                            </div>
+
+                            <div class="meta">
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-user text-primary"></i> Vidhi Pareek
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-clock text-primary"></i>  Nov 24,2021
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <!-- content -->
+                        <div class="content text-dark display-2 secondary-title mt-3 cmath">
+                          <ul>
+                          <li>
+                            <h1>Problem</h1>
+                            <p>Given a set of activities, along with the starting and finishing time of each activity, find the maximum number of activities performed by a single person assuming that a person can only work on a single activity at a time.</p>
+                          </li>
+                          <li>
+                            Note:
+                            <ul>
+                              <li>
+                                We will use greedy approach because we want to maximize the count of activities that can be executed.
+                                 We should greedily choose an activity with earliest finish time at every step, thus yielding an optimal solution.
+                              </li>
+                              <li>
+                                The activities hat we pick should be <b>non-conflicting activities</b>.Two activities `i` and `j` are said to be non-conflicting if `s_i>=f_j` or `s_j>=f_i` where `s_i` and `s_j` are starting times while `f_i` and `f_j` are finishing times.
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <h1>How to implement?</h1>
+                            <ol>
+                              <li>
+                                Sort the given activities according to their finishing times.
+                              </li>
+                              <li>
+                                Select the first activity from sorted activities and add that activity to solution set.
+                              </li>
+                              <li>
+                                After the first activity, for further selections , move further in the list and check if the starting time of the selected activity is greater than or equal to the activity last added in solution set. If yes, add this activity to solution set otherwise skip it and move on to next activity.
+                              </li>
+                              <li>
+                                Keep repeating the previous step until you reach the end of the list.
+                              </li>
+                            </ol>
+                          </li>
+                          <ul>
+                            Example:
+<br /><br />
+<div class="cmath" align="center">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/7-SGf0EqYBg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+                          </ul>
+                          <li>
+                            <pre><code class="language-pascal">
+Activity-Selection(Activity, start, finish)
+     Sort Activity by finish times stored in finish
+     Selected = {Activity[1]}
+     n = Activity.length
+     j = 1
+     for i = 2 to n:
+         if start[i] ≥ finish[j]:
+             Selected = Selected U {Activity[i]}
+             j = i
+return Selected
+</code></pre>
+                          </li>
+                          <li>
+                            <h1>Time Complexity Analysis</h1>
+                            <p>Following are the scenarios for computing the time complexity of Activity Selection Algorithm
+                                                        </p>
+
+<p>
+Case 1: When a given set of activities are already sorted according to their finishing time, then there is no sorting mechanism involved, in such a case the complexity of the algorithm will be `O(n)`
+</p>
+<p>
+Case 2: When a given set of activities is unsorted, sorting algorithm will take O(nlogn) thereby increasing overall complexity to `O(nlogn)`
+</p>
+                          </li>
+
+                          </ul>
+
+                        </div>
+                    </article>
+
+                    <!-- post footer -->
+                    <div class="post-footer mb-3">
+                        <div class="post-tags d-flex flex-wrap justify-content-center">
+                            <a href="#" class="nav-link btn bg-light">Greedy</a>
+                            <a href="#" class="nav-link btn bg-light">Activity Selection</a>
+                        </div>
+
+
+
+                        <!-- post related -->
+                        <div class="post-realted py-2">
+                            <div class="row justify-content-center">
+                                <div class="prev">
+                                    <div class="py-2">
+                                        <a href="./greedy_desc.html" class="display-2 text-dark">
+                                            <i class="fas fa-chevron-left"></i>
+                                            Previous Post
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="./greedy_desc.html">
+                                                <img src="./assets/greedypic.png" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./greedy_desc.html" class="text-title display-1 text-dark">
+                                              Greedy Algorithm
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="next text-right">
+                                    <div class="py-2">
+                                        <a href="./huffman.html" class="display-2 text-dark">
+                                            Next Post
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./huffman.html" class="text-title display-1 text-dark">
+                                                    Huffman Codes
+                                                </a>
+                                            </div>
+                                            <a href="./huffman.html">
+                                                <img src="./assets/huffman.png" class="object-fit" alt="">
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+
+    <!-- .footer -->
+
+
+    <!-- masonry libray for horizontal grid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <!-- custom javascript main.js file -->
+    <script src="main.js"></script>
+</body>
+</html>

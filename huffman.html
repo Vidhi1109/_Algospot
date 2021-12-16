@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSpot</title>
+
+    <!-- font awesome icons cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" integrity="sha512-m3pAvNriL711NMlhkZHK6K4Tu2/RjtrzyjxZU8mlAbxxoDoURy27KajN1LGTLeEEPvaN12mKAgSCrYEwF9y0jA==" crossorigin="anonymous" />
+
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/index.html" class="nav-brand text-dark">
+                    AlgoSpot
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        <a href="./AlgoSpot.html" class="nav-link">Home</a>
+
+                    </ul>
+                </div>
+           </nav>
+       </header>
+    <!-- .Header -->
+
+    <!-- Main Site -->
+       <main id="site-main">
+
+            <!-- Post Content -->
+                <section class="container">
+                    <article id="post">
+                        <!-- article heading -->
+                        <div class="headings text-center">
+                            <div class="title">
+                                <h2 class="text-title text-dark display-1">Huffman Codes</h2>
+                            </div>
+
+                            <div class="meta">
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-user text-primary"></i> Vidhi Pareek
+                                </a>
+                                <a href="#" class="link display-2 text-secondary px-1">
+                                    <i class="fas fa-clock text-primary"></i>  Nov 24,2021
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- thumbnail  -->
+                        <br /><br />
+                        <div class="cmath" align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wEbzw1DnoHM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+                        <!-- content -->
+                        <div class="content text-dark display-2 secondary-title mt-3 cmath">
+                          <ul>
+                            <li>
+                                Huffman coding is an algorithm used for compressing data. It gives the basic idea of how a file is compressed.It works on greedy paradigm.
+                            </li>
+                            <li>
+                              We know that data is stored in the form of binary strings .
+The idea is to assign variable length codes to characters.The character which is most frequently used will be assigned the shortest code while the character least used will be assigned longest code.
+                            </li>
+                            <li>
+                              These variable length codes are called prefix codes. These codes are assigned in such a way that the code assigned to one character is not the prefix of code assigned to any other character. This property resolves an ambiguity that might have happened otherwise.
+                            </li>
+                            <li>
+                              For example - Let a , b, c, d be characters and their corresponding codes be 00, 01, 0 and 1. Now if the bitstream is 0001, then the output could be “cccd” or “ccb” or “acd” or “ab”.
+                            </li>
+                            <li>
+                              This algorithm will perform two major tasks:
+                              <ol>
+                                <li>
+                                  Build a Huffman tree from input characters
+
+                                </li>
+                                <li>
+                                  Traverse the Huffman tree and assign codes to characters.
+
+                                </li>
+                              </ol>
+                            </li>
+                            <h1>PART 1 - BUILDING HUFFMAN TREE</h1>
+                            <br />Input : Characters with their frequencies.
+                            <ol>
+                              <li>
+                                Create a leaf node for each unique character, and build a min heap of all heap nodes.
+                              </li>
+                              <li>
+                                Extract the two nodes with least frequency from the heap
+
+                              </li>
+                              <li>
+                                Now create a new internal node whose frequency is sum of frequencies of these two nodes . This new node should be such that its left child and right child are the previously extracted nodes.
+                              </li>
+                              <li>
+                                Add this node to min heap. Repeat step 2 and step 3 until the heap contains only one node. The remaining node is the root node and the tree is complete.
+
+                              </li>
+                            </ol>
+                            <li>
+<pre><code class="language-pascal">
+Create a priority queue Q consisting of each unique character.
+sort then in ascending order of their frequencies.
+for all the unique characters:
+    create a newNode
+    extract minimum value from Q and assign it to leftChild of newNode
+    extract minimum value from Q and assign it to rightChild of newNode
+    calculate the sum of these two minimum values and assign it to the value of newNode
+    insert this newNode into the tree
+return rootNode
+</code></pre>
+                            </li>
+                              <h1>PART 2 - Assign codes to characters </h1>
+                              <p>
+                                Traverse the tree formed starting from the root. Maintain an auxiliary array. While moving to the left child, write 0 to the array. While moving to the right child, write 1 to the array. Print the array when a leaf node is encountered.
+
+                              </p>
+                              <li>
+                                <h1>Time Complexity Analysis</h1>
+                                O(nlogn) where n is the number of unique characters.
+                              </li>
+                          </ul>
+
+                        </div>
+                    </article>
+
+                    <!-- post footer -->
+                    <div class="post-footer mb-3">
+                        <div class="post-tags d-flex flex-wrap justify-content-center">
+                            <a href="#" class="nav-link btn bg-light">Huffman Codes</a>
+                            <a href="#" class="nav-link btn bg-light">Greedy</a>
+                        </div>
+
+
+
+                        <!-- post related -->
+                        <div class="post-realted py-2">
+                            <div class="row justify-content-center">
+                                <div class="prev">
+                                    <div class="py-2">
+                                        <a href="./activityselection.html" class="display-2 text-dark">
+                                            <i class="fas fa-chevron-left"></i>
+                                            Previous Post
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <a href="./activityselection.html">
+                                                <img src="./assets/huffman.png" class="object-fit" alt="">
+                                            </a>
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./activityselection.html" class="text-title display-1 text-dark">
+                                                    Activity Selection
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="next text-right">
+                                    <div class="py-2">
+                                        <a href="./kruskal.html" class="display-2 text-dark">
+                                            Next Post
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    <article class="article text-center">
+                                        <div class="d-flex">
+                                            <div class="cart-body px-1">
+                                                <div class="category">
+                                                    <a href="#" class="link text-primary text-secondary">Algorithms</a>
+                                                </div>
+                                                <a href="./kruskal.html" class="text-title display-1 text-dark">
+                                                  Kruskal Algorithm
+                                                </a>
+                                            </div>
+                                            <a href="./kruskal.html">
+                                                <img src="./assets/kruskal.png" class="object-fit" alt="">
+                                            </a>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+
+    <!-- .footer -->
+
+
+    <!-- masonry libray for horizontal grid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <!-- custom javascript main.js file -->
+    <script src="main.js"></script>
+</body>
+</html>
